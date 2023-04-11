@@ -1,3 +1,6 @@
-const value = 0;
+const despenseCoins = function(amount) {
 
-exports.value = value;
+  return amount / 1 ;
+}
+
+exports.despenseCoins = despenseCoins;
