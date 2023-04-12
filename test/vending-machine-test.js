@@ -17,6 +17,7 @@ const testVendingMachine = function() {
   assert(2, determineNoOfCoins(10, [1, 2, 5]), "should give total 2 coin of rs 5 for amount : 10rs");
   assert(3, determineNoOfCoins(9, [1, 2, 5, 10]), "should give total 3 coin of rs 5 and 2 for amount : 9rs");
   assert(2, determineNoOfCoins(12, [1, 2, 10]), "should give total 2 coin of rs 10 and 2 for amount : 12rs");
+  assert(4, determineNoOfCoins(13, [1, 4, 7]), "should give total 4 coin of rs 7,2 and 1 for amount : 13rs");
 }
 
 testVendingMachine();
