@@ -16,8 +16,6 @@ const determineNoOfCoins = function(amount,denominations) {
 }
 exports.determineNoOfCoins = determineNoOfCoins;
 
-/*************************************************************************/
-
 const ejectAt = function(index,numbers) {
   return numbers.slice(0,index).concat(numbers.slice(index+1));
 }
@@ -45,5 +43,44 @@ const maxSort = function(array) {
 }
 
 
+/********** No. Of Coins ****************/
+
+const calculateNoOfCoins = function(amount, denomination) {
+  let remainingAmount = amount;
+  let array = [];
+
+  for(let index = 0; index < denomination.length; index++) {
+    let result = Math.floor(remainingAmount / denomination[index]);
+    array.push(result);
+    remainingAmount = remainingAmount % denomination[index];
+  }
+
+  return array;
+}
+
+const joinArrayAsObj = function(sortedDenomination, array) {
+  const coinsObj = {};
+
+  for(let index = 0; index < sortedDenomination.length; index++ ) {
+    coinsObj[sortedDenomination[index]] = array[index];
+  }
+
+  return coinsObj;
+}
+
+const main = function(amount, denomination) {
+  const sortedDenomination = maxSort(denomination);
+  const coinsArray = calculateNoOfCoins(amount, sortedDenomination);
+  const coinsObj = joinArrayAsObj(sortedDenomination, coinsArray);
+  //console.log(coinsObj);
+  return coinsObj;
+}
+
+//jconsole.log(main(0,[1]));
+
+
+
+exports.calculateNoOfCoins = calculateNoOfCoins;
 exports.maxSort = maxSort;
 exports.maxOf = maxOf;
+exports.main = main;
