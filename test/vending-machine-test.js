@@ -6,6 +6,7 @@ const printHeadLine = testing.printHeadLine;
 const determineNoOfCoins = vendingMachine.determineNoOfCoins;
 const maxSort = vendingMachine.maxSort;
 const assertArray= testing.assertArray;
+const maxOf = vendingMachine.maxOf;
 
 const testVendingMachine = function() {
   printHeadLine("\nTesting for determineNoOfCoins");
@@ -26,13 +27,27 @@ const testVendingMachine = function() {
 
 const testMaxSort = function() {
   printHeadLine("\n Testing for maxSort");
-  assertArray([3,2,1], maxSort([2,1,3]), "Should give 3,2,1 for 2,1,3")
-  assertArray([2,1,1], maxSort([1,2,1]), "Should give 2,1,1 for 1,2,1")
-  assertArray([1,1,1], maxSort([1,1,1]), "Should give 1,1,1 for 1,1,1")
-  assertArray([4,3,2], maxSort([2,3,4]), "Should give 4,3,2 for 2,3,4")
   assertArray([], maxSort([]), "Should give empty for empty array")
+  assertArray([1], maxSort([1]), "should give 1 for 1")
+  assertArray([2, 1], maxSort([1, 2]), "Should give 2,1 for 1,2")
+  assertArray([2, 1, 1], maxSort([1, 2, 1]), "Should give 2,1,1 for 1,2,1")
+  assertArray([2, 0,-3], maxSort([2, -3, 0]), "Should give 2,0,-3  for 2,-3, 0")
 
 }
+
+const testMaxOf = function() {
+  printHeadLine("\nTesting for max in array");
+
+  //assert(undefined, maxOf([]), "Should give empty for empty array")
+  assert(1, maxOf([1]), "Should give 1 for 1")
+  assert(2, maxOf([1,2]), "Should give 2 for 1,2")
+  assert(3, maxOf([1,3,0]), "Should give 3 for 1,3,0")
+  assert(2, maxOf([2,0,1]), "Should give 2 for 2,0,1")
+  assert(1, maxOf([-2,-5, 0, 1]), "Should give 1 for -2,-5,0,1")
+
+}
+
+testMaxOf();
 testMaxSort();
 testVendingMachine();
 testing.getSummary();

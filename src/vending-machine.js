@@ -19,30 +19,31 @@ exports.determineNoOfCoins = determineNoOfCoins;
 /*************************************************************************/
 
 const ejectAt = function(index,numbers) {
-  numbers = numbers.slice(0,index).concat(numbers.slice(index+1));
-
-  return numbers;
+  return numbers.slice(0,index).concat(numbers.slice(index+1));
 }
 
-const maxSort = function(arrayToSort) {
-  let sortedArray = [];
-  let newArray = arrayToSort;
-  let length = arrayToSort.length;
-
-  for (let i = 0; i < arrayToSort.length; i++) {
-    let max = newArray[0];
-
-    for(let index = 0; index < length ; index++) {
-      max = Math.max(max, newArray[index]);
-    }
-    sortedArray.push(max);
-    newArray = ejectAt(newArray.indexOf(max), newArray);
-    length--;
+const maxOf = function(array) {
+  let max = array[0];
+  for(let index = 0; index < array.length ; index++) {
+    max = Math.max(max, array[index]);
   }
+
+  return max;
+}
+
+const maxSort = function(array) {
+  let sortedArray = [];
+  let copyOfArray = array;
+
+  for (let i = 0; i < array.length; i++) {
+    max = maxOf(copyOfArray);
+    sortedArray.push(max);
+    copyOfArray = ejectAt(copyOfArray.indexOf(max), copyOfArray);
+  }
+
   return sortedArray;
 }
 
-//console.log(maxSort([1,3,6,2]));
 
 exports.maxSort = maxSort;
-
+exports.maxOf = maxOf;
